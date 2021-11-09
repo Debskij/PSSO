@@ -3,20 +3,20 @@ import java.util.Collections;
 import java.util.Vector;
 
 
-public class RC4 {
+public class Cipher {
     private int box_size = 256;
     private Vector<Byte> s_box = new Vector<Byte>(box_size);
     private Vector<Byte> k_box = new Vector<Byte>(box_size);
     private Vector<Byte> pattern = new Vector<Byte>();
 
-    RC4(){
+    Cipher(){
         byte[] key = {'t', 'e', 's', 't', '$', ',', '.'};
         for(byte b : key){
             this.pattern.add(b);
         }
     }
 
-    RC4(byte[] key){
+    Cipher(byte[] key){
         for(byte b : key){
             this.pattern.add(b);
         }

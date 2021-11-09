@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Vector;
 
 public class CipherOutputStream extends FilterOutputStream{
-    private RC4 rc4_instance = new RC4();
+    private Cipher rc4_instance = new Cipher();
 
     public CipherOutputStream(OutputStream out){
         super(out);
