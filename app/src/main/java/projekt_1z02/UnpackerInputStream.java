@@ -14,8 +14,9 @@ public class UnpackerInputStream extends FilterInputStream{
     public int read(byte[] bytes, int off, int buffor) throws java.io.IOException {
         int remaining_chars = in.read(bytes, off, buffor);
         Unpacker unpacker = new Unpacker();
-        String unpacked = unpacker.decode(bytes, FIVE_BIT);
-        bytes = unpacked.getBytes();
+        String unpacked = unpacker.decode(bytes, SIX_BIT);
+        byte[] bytesBuf = unpacked.getBytes();
+        System.arraycopy(bytesBuf, 0, bytes, 0, bytes.length);
         return remaining_chars;
     }
 
@@ -23,8 +24,9 @@ public class UnpackerInputStream extends FilterInputStream{
     public int read(byte[] bytes) throws java.io.IOException {
         int remaining_chars = in.read(bytes);
         Unpacker unpacker = new Unpacker();
-        String unpacked = unpacker.decode(bytes, FIVE_BIT);
-        bytes = unpacked.getBytes();
+        String unpacked = unpacker.decode(bytes, SIX_BIT);
+        byte[] bytesBuf = unpacked.getBytes();
+        System.arraycopy(bytesBuf, 0, bytes, 0, bytes.length);
         return remaining_chars;
     }
 }
