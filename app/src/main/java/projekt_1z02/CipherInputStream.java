@@ -19,9 +19,8 @@ public class CipherInputStream extends FilterInputStream{
         }
         Vector<Byte> key = rc4_instance.run_chain(current_read);
         Vector<Byte> modified_message = rc4_instance.run_xor(current_read, key);
-        byte[] new_bytes = new byte[modified_message.size()];
         for (int i = 0; i<modified_message.size(); i++){
-            new_bytes[i] = modified_message.get(i);
+            bytes[i] = modified_message.get(i);
         }
         return remaining_chars;
     }
