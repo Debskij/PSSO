@@ -11,6 +11,14 @@ public class PackerOutputStream extends FilterOutputStream{
     }
 
     @Override
+    public void write(byte[] bytes, int off, int len) throws java.io.IOException {
+        Packer packer = new Packer();
+        String string_form = new String(bytes);
+        byte[] packed = packer.encode(string_form, SIX_BIT);
+        out.write(packed, off, len);
+    }
+
+    @Override
     public void write(byte[] bytes) throws java.io.IOException {
         Packer packer = new Packer();
         String string_form = new String(bytes);

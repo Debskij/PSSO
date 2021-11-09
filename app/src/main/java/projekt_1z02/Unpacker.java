@@ -19,7 +19,11 @@ public class Unpacker {
             strBinary = strBinary+strTemp;
         }
         for(int i=0 ; i<strBinary.length();i=i+bit){
-            tempInt = Integer.valueOf(strBinary.substring(i,i+bit), 2);
+            int end_index = i + bit;
+            if(end_index >= strBinary.length()){
+                end_index = strBinary.length() - 1;
+            }
+            tempInt = Integer.valueOf(strBinary.substring(i,end_index), 2);
             strText = strText + toChar(tempInt.intValue()); 
         }
         return strText;

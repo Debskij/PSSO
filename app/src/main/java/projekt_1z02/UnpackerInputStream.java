@@ -11,11 +11,20 @@ public class UnpackerInputStream extends FilterInputStream{
     }
     
     @Override
-    public int read(byte[] bytes) throws java.io.IOException {
+    public int read(byte[] bytes, int off, int buffor) throws java.io.IOException {
+        int remaining_chars = in.read(bytes);
         Unpacker unpacker = new Unpacker();
         String unpacked = unpacker.decode(bytes, SIX_BIT);
-        byte[] new_bytes = unpacked.getBytes();
-        in.read(new_bytes);
-        return new_bytes.length;
+        bytes = unpacked.getBytes();
+        return remaining_chars;
+    }
+
+    @Override
+    public int read(byte[] bytes) throws java.io.IOException {
+        int remaining_chars = in.read(bytes);
+        Unpacker unpacker = new Unpacker();
+        String unpacked = unpacker.decode(bytes, SIX_BIT);
+        bytes = unpacked.getBytes();
+        return remaining_chars;
     }
 }
