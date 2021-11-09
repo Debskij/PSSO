@@ -46,14 +46,15 @@ public class CipherPackerTest {
         assertTrue(contentEquals());
 	}
 	
-	@Test 
+	@Test  
 	public void testCipherAndPacker() throws Exception {
 		out = new PackerOutputStream( new CipherOutputStream( new FileOutputStream("src/main/resources/encryptedCompressedText.txt") ) );
-		copyAndClose(in, out, 32);
+		copyAndClose(in, out, 64);
 		in = new UnpackerInputStream( new CipherInputStream( new FileInputStream("src/main/resources/encryptedCompressedText.txt") ) );
 		out = new FileOutputStream("src/main/resources/out.txt");
-        copyAndClose(in, out, 64);
-        assertEquals(Files.size(Paths.get("src/main/resources/plainText.txt")), Files.size(Paths.get("src/main/resources/out.txt")));		
+        copyAndClose(in, out, 32);
+        assertEquals(Files.size(Paths.get("src/main/resources/plainText.txt")), Files.size(Paths.get("src/main/resources/out.txt")));	
+		assertTrue(contentEquals());			
 	}
 
 	private void copyAndClose(InputStream in, OutputStream out, int buffor) throws IOException {

@@ -12,9 +12,9 @@ public class UnpackerInputStream extends FilterInputStream{
     
     @Override
     public int read(byte[] bytes, int off, int buffor) throws java.io.IOException {
-        int remaining_chars = in.read(bytes);
+        int remaining_chars = in.read(bytes, off, buffor);
         Unpacker unpacker = new Unpacker();
-        String unpacked = unpacker.decode(bytes, SIX_BIT);
+        String unpacked = unpacker.decode(bytes, FIVE_BIT);
         bytes = unpacked.getBytes();
         return remaining_chars;
     }
@@ -23,7 +23,7 @@ public class UnpackerInputStream extends FilterInputStream{
     public int read(byte[] bytes) throws java.io.IOException {
         int remaining_chars = in.read(bytes);
         Unpacker unpacker = new Unpacker();
-        String unpacked = unpacker.decode(bytes, SIX_BIT);
+        String unpacked = unpacker.decode(bytes, FIVE_BIT);
         bytes = unpacked.getBytes();
         return remaining_chars;
     }

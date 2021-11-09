@@ -23,6 +23,7 @@ public class Unpacker {
             if(end_index >= strBinary.length()){
                 end_index = strBinary.length() - 1;
             }
+            if(end_index == i) break;
             tempInt = Integer.valueOf(strBinary.substring(i,end_index), 2);
             strText = strText + toChar(tempInt.intValue()); 
         }
