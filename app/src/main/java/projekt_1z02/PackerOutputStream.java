@@ -15,7 +15,7 @@ public class PackerOutputStream extends FilterOutputStream{
         Packer packer = new Packer();
         String string_form = new String(bytes);
         byte[] packed = packer.encode(string_form, SIX_BIT);
-        out.write(packed, off, len);
+        out.write(packed, off, packed.length);
     }
 
     @Override
